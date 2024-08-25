@@ -15,7 +15,9 @@ const UserInfo = () => {
         <Button variant={"outline"}>My Meal Plans</Button>
       </Link>
       <SignedOut>
-        <SignInButton />
+        <Button variant={"outline"} asChild>
+          <SignInButton />
+        </Button>
       </SignedOut>
       <SignedIn>
         <UserButton
