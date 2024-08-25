@@ -5,7 +5,7 @@ import ModeToggle from "../mode-toggle/ModeToggle";
 
 const Header = () => {
   return (
-    <header className="flex w-full items-center justify-between z-10 absolute p-5">
+    <header className="flex w-full items-center justify-between z-10 top-0 p-5">
       <Link href={"/"}>Meal Planner</Link>
       <div className="flex gap-3">
         <ModeToggle />
