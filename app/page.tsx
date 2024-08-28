@@ -1,6 +1,7 @@
 "use client";
 import { AuroraBackground } from "@/components/ui/aurora-background/aurora-background";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -21,9 +22,12 @@ export default function Home() {
         <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
           And this, is chemical burn.
         </div>
-        <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
+        <Link
+          href={"/meal-planner"}
+          className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2"
+        >
           Create your meal plan now
-        </button>
+        </Link>
       </motion.div>
     </AuroraBackground>
   );

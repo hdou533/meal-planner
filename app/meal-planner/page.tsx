@@ -26,6 +26,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Diet, Goal } from "@/lib/enum";
 import { useState } from "react";
+import { trpc } from "@/server/trpc";
 
 const goals = Object.values(Goal);
 const diets = Object.values(Diet);
@@ -43,6 +44,8 @@ const MealPlannerPage = () => {
   const [mealPlannerType, setMealPlannerType] = useState<"weekly" | "daily">(
     "daily"
   );
+
+  const getCompletion = trpc.ai.getMealPlan.useMutation();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -57,7 +60,12 @@ const MealPlannerPage = () => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      console.log("get ai response");
+      const completion = await getCompletion.mutateAsync({
+        ...values,
+        model: "gpt-3.5-turbo",
+        mealPlannerType,
+      });
+      console.log(completion);
     } catch (error) {
       console.error("Error fetching AI response", error);
     }

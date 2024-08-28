@@ -5,6 +5,7 @@ import Header from "@/components/ui/header/Header";
 import { ClerkProvider } from "@clerk/nextjs";
 import Footer from "@/components/ui/footer/Footer";
 import { ThemeProvider } from "next-themes";
+import { trpc } from "@/server/client";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,11 +23,13 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang="en">
         <body className={inter.className}>
-          <ThemeProvider attribute="class" defaultTheme="system">
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
+          <trpc.Provider>
+            <ThemeProvider attribute="class" defaultTheme="system">
+              <Header />
+              {children}
+              <Footer />
+            </ThemeProvider>
+          </trpc.Provider>
         </body>
       </html>
     </ClerkProvider>
